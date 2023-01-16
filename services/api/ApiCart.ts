@@ -1,6 +1,7 @@
 import axios from 'axios';
-import { API_HOSTNAME } from '../../utils/utils';
+import { API_GAMES_HOSTNAME, API_HOSTNAME } from '../../utils/utils';
 import { UserData } from '../../components/UserDataModal/UserDataModal.types';
+import { GameDto, UserPayData } from '../../types/games.types';
 
 export const ApiCart = {
   sendUserInfo: async (username: string, userEmail: string, userPhone: string) => {
@@ -11,6 +12,9 @@ export const ApiCart = {
         userPhone,
       })
       .then((res) => res.data);
+  },
+  getLiqpay: async (userPayData: UserPayData) => {
+    return await axios.post<string>(`${API_GAMES_HOSTNAME}/liqpay`, userPayData).then(async (res) => res.data);
   },
 };
 

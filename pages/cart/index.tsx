@@ -112,7 +112,7 @@ const Cart = () => {
               {isPurchaseDone ? <BsCartCheck size={100} /> : <EmptyCartIcon size={100} />}
               <p className="text-2xl font-medium">
                 {isPurchaseDone
-                  ? 'Order was generated! Manager will contact you shortly.'
+                  ? 'Pay for your order and receive your Steam keys to the entered mail.'
                   : 'Your cart is empty. Go to the Games page!'}
               </p>
               <Link href="/games">
