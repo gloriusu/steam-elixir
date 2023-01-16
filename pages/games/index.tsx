@@ -48,6 +48,8 @@ const Products = () => {
     return <UiLoader size="large" />;
   }
 
+  const isNoGames = games?.length === 0 && searchText.trim() === '' && !isLoading;
+
   return (
     <>
       <Head>
@@ -78,6 +80,7 @@ const Products = () => {
               isCartHasItems && 'overflow-auto base-scrollbar'
             )}
           >
+            {isNoGames && <span className="text-center font-medium text-3xl text-gray-400 mt-6">No data</span>}
             {filteredProducts && isFilteredProductsEmpty
               ? Boolean(searchText) && (
                   <UiCard className="flex flex-col items-center gap-6 justify-center mt-36">

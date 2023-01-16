@@ -6,6 +6,7 @@ import UiButton from '../UI/UiButton/UIButton';
 import { UserData } from './UserDataModal.types';
 import ApiCart from '../../services/api/ApiCart';
 import CART from '../../services/cart/gamesCart';
+import { GamesShortInfoListDto } from '../../types/games.types';
 
 type UserModalProps = {
   isModalVisible: boolean;
@@ -26,10 +27,23 @@ const UserDataModal = ({ isModalVisible, setIsModalVisible, setIsPurchaseDone }:
   });
 
   const onSubmit = async (data: UnpackNestedValue<UserData>) => {
-    CART.empty();
-    await ApiCart.sendUserInfo(data.username, data.userEmail, data.userPhone);
+    const games: GamesShortInfoListDto = CART.items.map((item) => {
+      return { gameId: item.id, count: item.quantity };
+    });
+    const liqpayLink = await ApiCart.getLiqpay({
+      userEmail: data.userEmail,
+      username: data.username,
+      price: CART.getTotalPrice(),
+      games,
+    });
+    const a = document.createElement('a');
+    a.href = liqpayLink;
+    a.target = '_blank';
+    a.click();
+    a.remove();
     setIsModalVisible(false);
     setIsPurchaseDone(true);
+    CART.empty();
   };
 
   const inputClasses =

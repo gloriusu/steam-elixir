@@ -15,3 +15,17 @@ export type GameDto = {
 };
 
 export type GamesListDto = GameDto[];
+
+export type GameShortInfoDto = {
+  gameId: number;
+  count: number;
+};
+
+export type GamesShortInfoListDto = GameShortInfoDto[];
+
+export type UserPayData = {
+  username: string;
+  price: number;
+  userEmail: string;
+  games: GamesShortInfoListDto;
+};
