@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply base-scrollbar bg-neutral-200 h-full min-h-full m-0;
+}
+
+.base-scrollbar::-webkit-scrollbar {
+  @apply w-1.5 h-1.5;
+}
+
+.base-scrollbar::-webkit-scrollbar-track {
+  @apply w-1.5 h-1.5;
+}
+
+.base-scrollbar::-webkit-scrollbar-thumb {
+  @apply w-1 h-1 rounded bg-neutral-400;
+}
+
+.grid-products-template {
+  grid-template-columns: repeat(auto-fit, minmax(300px, max-content));
+}
+
+.grid-cart-items-template {
+  grid-template-columns: repeat(auto-fit, minmax(100px, max-content));
+}
+
+.modal-color {
+  background: rgba(0, 0, 0, 0.5);
+}
